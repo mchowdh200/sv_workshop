@@ -9,4 +9,4 @@ output=$3
 # 100 base pairs of each other
 cat $gaps <(cut -f1-3 $high_cov) |
     bedtools sort -i stdin |
-    bedtools merge -d 100 -i stdin > $output
+    bedtools merge -d 1000 -i stdin > $output
