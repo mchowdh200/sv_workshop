@@ -17,6 +17,6 @@ mosdepth_bed = pd.read_csv(
 mean_depth = mosdepth_bed.depth.mean()
 std_depth = mosdepth_bed.depth.std()
 high_cov_bed = mosdepth_bed.loc[
-    mosdepth_bed.depth > (mean_depth + 2*std_depth)]
+    mosdepth_bed.depth > (mean_depth + 4*std_depth)]
 high_cov_bed.to_csv(output, sep='\t', header=False, index=False)
 
