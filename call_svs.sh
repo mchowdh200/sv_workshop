@@ -15,5 +15,6 @@ smoove call \
        --outdir $outdir \
        --processes 4 \
        --genotype \
+       --noextrafilters \
        $bam
 
