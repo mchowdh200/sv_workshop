@@ -4,7 +4,7 @@ bam=$1
 fasta=$2
 name=$3
 sites_vcf=$4
-outdir=$4
+outdir=$5
 
 # regenotype the sample bam using the merged sites vcf
 # additionally, annotate sites with duphold which provides
