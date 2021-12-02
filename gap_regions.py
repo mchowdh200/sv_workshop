@@ -7,6 +7,11 @@ import gzip
 from Bio import SeqIO
 from joblib import Parallel, delayed
 
+### Find gap regions in a single fasta record (ie contig)
+# This function simply iterates over each character in a fasta record
+# and keeps track of the position as it goes.  Once a 'N' is encountered,
+# we will keep track of how long the run of N's is in order to get the
+# start/end coordinates
 def get_gap_regions(record):
     regions = []
     start_pos = 0
@@ -31,8 +36,17 @@ def get_gap_regions(record):
     return regions
 
 if __name__ == "__main__":
+    # reference genome path
     fasta = sys.argv[1]
+
+    # number of processes to parallelize with
     processes = int(sys.argv[2])
+
+    # I'm using a library called joblib to parallelize the task by fasta record.
+    # parallelizing by fasta record is usefull for reference genomes with lots of
+    # small contigs, like the one we're working with here.
+    # Fun fact: joblib is used extensively by scikit-learn for parallelization
+    # and data pipline caching.
     with gzip.open(fasta, mode="rt") as fasta_handle:
         gap_regions = Parallel(n_jobs=processes)(delayed(get_gap_regions)(record)
             for record in SeqIO.parse(fasta_handle, "fasta"))
