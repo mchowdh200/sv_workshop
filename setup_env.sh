@@ -41,3 +41,13 @@ mamba create -y -c bioconda -n samplot samplot
 # us to take many of the things we learn about today and compose
 # them into easy to run/reproduce data pipelines.
 mamba create -y -c bioconda -c conda-forge -n snakemake python=3.9 snakemake
+
+
+# gargs is a command line utility that allows us to parse in lines of text
+# in a file (like a tab separated bed file for example) and use them as
+# arguments for a command that we wish to execute repeatedly.  Also allows
+# for easy parallelization of tasks.
+wget https://github.com/brentp/gargs/releases/download/v0.3.9/gargs_linux
+mkdir -p ~/bin
+mv gargs_linux ~/bin/gargs
+chmod +x ~/bin/gargs
