@@ -7,8 +7,9 @@ our threshold.
 import pandas as pd
 import sys
 
-input = sys.argv[1]
-output = sys.argv[2]
+
+input = sys.argv[1] # mosdepth coverage at each region)
+output = sys.argv[2] # high coverage regions leftover
 
 mosdepth_bed = pd.read_csv(
     input, compression='gzip', sep='\t',
