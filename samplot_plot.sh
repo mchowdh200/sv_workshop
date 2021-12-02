@@ -3,6 +3,7 @@
 regions_bed=$1
 bam=$2
 outdir=$3
+processes=$4
 
 # we're gonna take the SV regions from our bed
 # with format CHR  START  END  Genotype (tab separated)
@@ -12,6 +13,6 @@ outdir=$3
 mkdir -p $outdir
 cat $regions_bed |
     sed -e 's/0\/1/het/g' -e 's/1\/1/alt/g'| # change the numeric genotype to het or alt
-    ~/bin/gargs -p 1 "samplot plot -c {0} -s {1} -e {2} -t DEL -b $bam \\
+    ~/bin/gargs -p $processes "samplot plot -c {0} -s {1} -e {2} -t DEL -b $bam \\
                       -o $outdir/{0}_{1}_{2}_DEL_{3}.png"
                 
